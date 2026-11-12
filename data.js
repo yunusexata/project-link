@@ -3,66 +3,42 @@
 // No build step needed — just save and reload the browser.
 window.LINKS_DATA = [
   {
-    "company": "Acme Corporation",
-    "logo": "https://logo.clearbit.com/acmecorp.com",
+    "company": "Exata Indonesia",
+    "logo": "https://app.exata.site/assets/logo/exata_indonesia.png",
     "links": [
-      { "title": "Project Dashboard",       "url": "https://dashboard.acmecorp.com" },
-      { "title": "Confluence Wiki",          "url": "https://acme.atlassian.net/wiki" },
-      { "title": "Jira Board",               "url": "https://acme.atlassian.net/jira" },
-      { "title": "Figma Design System",      "url": "https://figma.com/file/acme-ds" },
-      { "title": "Staging Environment",      "url": "https://staging.acmecorp.com" },
-      { "title": "GitHub Organization",      "url": "https://github.com/acme-corp" },
-      { "title": "Analytics (Mixpanel)",     "url": "https://mixpanel.com/project/acme" }
+      { "title": "Nenkin - Form Online",       "url": "https://boost.nenkin.web.id/auth/login" },
+      { "title": "Gensen - Dashboard",          "url": "https://app.exata.site/" },
+      { "title": "Nenkin Portal - Admin Dashboard",          "url": "https://nenkin.exata-indonesia.id/admin-login" },
+      { "title": "Kalkulator Nenkin",          "url": "https://kalkulator.exata-indonesia.id/" },
+      { "title": "Alur Pencairan",          "url": "https://exata.site/" },
+      { "title": "E-Statement",          "url": "https://marketingexata.github.io/statement/" }
     ]
   },
   {
-    "company": "Bright Horizon Tech",
-    "logo": "https://logo.clearbit.com/brighthorizontech.com",
+    "company": "Japanindo Travel Connection",
+    "logo": "https://app.exata.site/assets/logo/jtc.png",
     "links": [
-      { "title": "Admin Portal",             "url": "https://admin.brighthorizon.io" },
-      { "title": "CI/CD Pipeline (Jenkins)", "url": "https://ci.brighthorizon.io" },
-      { "title": "Notion Workspace",         "url": "https://notion.so/brighthorizon" },
-      { "title": "Slack Channel #dev",       "url": "https://brighthorizon.slack.com/channels/dev" },
-      { "title": "AWS Console",              "url": "https://console.aws.amazon.com" },
-      { "title": "Datadog Monitoring",       "url": "https://app.datadoghq.com/brighthorizon" }
+      { "title": "JP Smart - Dashboard",             "url": "https://dashboard.japanindotravel.id/" }
     ]
   },
   {
-    "company": "NovaSpark Studio",
-    "logo": "https://logo.clearbit.com/novasparkstudio.com",
+    "company": "J-Expert",
+    "logo": "https://app.exata.site/assets/logo/j_expert.png",
     "links": [
-      { "title": "Client Portal",            "url": "https://portal.novaspark.studio" },
-      { "title": "Brand Assets (Drive)",     "url": "https://drive.google.com/novaspark-brand" },
-      { "title": "Trello Kanban Board",      "url": "https://trello.com/b/novaspark" },
-      { "title": "Figma Projects",           "url": "https://figma.com/novaspark" },
-      { "title": "Invoice Tracker",          "url": "https://invoice.novaspark.studio" }
+      { "title": "Dashboard Data Kandidat",             "url": "https://form.jexpertrecruitment.com/" },
+      { "title": "CBT",             "url": "https://cbt.jexpertrecruitment.com/" }
     ]
   },
   {
-    "company": "Meridian Logistics",
-    "logo": "https://logo.clearbit.com/meridianlogistics.com",
+    "company": "Marketing Content",
+    "logo": null,
     "links": [
-      { "title": "Fleet Tracker",            "url": "https://fleet.meridianlogistics.com" },
-      { "title": "Shipment Portal",          "url": "https://portal.meridianlogistics.com" },
-      { "title": "SAP ERP System",           "url": "https://sap.meridianlogistics.com" },
-      { "title": "Supplier Hub",             "url": "https://suppliers.meridianlogistics.com" },
-      { "title": "Report Center",            "url": "https://reports.meridianlogistics.com" },
-      { "title": "HR Self-Service",          "url": "https://hr.meridianlogistics.com" },
-      { "title": "Safety Compliance Docs",   "url": "https://docs.meridianlogistics.com/safety" },
-      { "title": "Route Planner",            "url": "https://routes.meridianlogistics.com" }
-    ]
-  },
-  {
-    "company": "Luminary Digital",
-    "logo": "https://logo.clearbit.com/luminarydigital.com",
-    "links": [
-      { "title": "Campaign Manager",         "url": "https://campaigns.luminarydigital.com" },
-      { "title": "Social Scheduler (Buffer)","url": "https://buffer.com/luminary" },
-      { "title": "SEO Dashboard (Ahrefs)",   "url": "https://app.ahrefs.com/luminary" },
-      { "title": "Google Analytics 4",       "url": "https://analytics.google.com/luminary" },
-      { "title": "Content Calendar (Notion)","url": "https://notion.so/luminary-content" },
-      { "title": "Design Approvals",         "url": "https://approvals.luminarydigital.com" }
+      { "title": "Prompt Image - Generator",             "url": "https://marketingexata.github.io/promptgen/" },
+      { "title": "Prompt Video - Generator",             "url": "https://marketingexata.github.io/promptvideo/" },
+      { "title": "Kaizen",             "url": "https://marketingexata.github.io/kaizen/kaizen.html" }
     ]
   }
-];
+]
+
+
 
