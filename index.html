@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Internal company resource hub — links organized by company." />
+  <title>Project Link</title>
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Compiled Tailwind CSS -->
+  <link rel="stylesheet" href="./dist/output.css" />
+
+  <style>
+    /* ── Page-level styles not easily expressed in Tailwind ── */
+
+    /* Subtle grid pattern background */
+    body {
+      background-color: #f8fafc;
+      background-image:
+        linear-gradient(rgba(99,102,241,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      min-height: 100vh;
+    }
+
+    /* Header gradient bar */
+    .header-bar {
+      background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    /* Wordmark gradient */
+    .wordmark-gradient {
+      background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Stat pill */
+    .stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.375rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      background: #f1f5f9;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #64748b;
+      border: 1px solid #e2e8f0;
+    }
+
+    .stat-pill strong {
+      color: #4f46e5;
+      font-weight: 700;
+    }
+
+    /* Subtle card appear — no load animation, just paint smoothly */
+    .company-card {
+      will-change: transform, box-shadow;
+    }
+
+    /* Clear button in search */
+    #clear-btn {
+      transition: opacity 150ms ease;
+    }
+
+    /* Scrollbar (Webkit) */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  </style>
+</head>
+
+<body class="font-sans">
+
+  <!-- ══ HEADER ══════════════════════════════════════════════════════════════ -->
+  <header class="header-bar sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Top row: logo + wordmark + stats -->
+      <div class="flex items-center justify-between py-4 gap-4">
+
+        <!-- Wordmark -->
+        <div class="flex items-center gap-2.5 flex-shrink-0">
+          <!-- Link icon -->
+          <div class="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center shadow-sm">
+            <svg class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <span class="text-lg font-bold tracking-tight wordmark-gradient">Project Link</span>
+        </div>
+
+        <!-- Stats -->
+        <div class="hidden sm:flex items-center gap-2">
+          <span class="stat-pill">
+            <strong id="stat-companies">—</strong> companies
+          </span>
+          <span class="stat-pill">
+            <strong id="stat-links">—</strong> links
+          </span>
+        </div>
+      </div>
+
+      <!-- Search row -->
+      <div class="pb-4">
+        <div class="relative max-w-xl">
+          <!-- Search icon -->
+          <svg class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none"
+               style="width:1.0625rem;height:1.0625rem;"
+               xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd"/>
+          </svg>
+
+          <input
+            id="search-input"
+            type="search"
+            class="search-input"
+            placeholder="Search companies or links…"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Search companies and links"
+          />
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ══ ERROR BANNER (hidden by default) ═══════════════════════════════════ -->
+  <div id="error-banner" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+    <div class="flex items-start gap-3 p-4 rounded-xl bg-red-50 border border-red-200 text-sm text-red-800">
+      <svg class="w-5 h-5 flex-shrink-0 mt-0.5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+      </svg>
+      <div>
+        <p class="font-semibold mb-1">Could not load link data</p>
+        <p class="text-red-700" data-error-msg></p>
+        <p class="mt-2 text-red-600 text-xs">
+          Make sure <code class="bg-red-100 px-1 py-0.5 rounded font-mono">data.js</code> is in the same folder as <code class="bg-red-100 px-1 py-0.5 rounded font-mono">index.html</code> and that it sets <code class="bg-red-100 px-1 py-0.5 rounded font-mono">window.LINKS_DATA</code>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ MAIN GRID ══════════════════════════════════════════════════════════ -->
+  <main
+    id="grid"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6"
+    aria-label="Company resource cards"
+  >
+    <!-- ── Skeleton loaders (removed by JS on load) ── -->
+    <div class="skeleton-card company-card" aria-hidden="true">
+      <div class="card-header">
+        <div class="w-11 h-11 rounded-xl bg-slate-200 animate-pulse flex-shrink-0"></div>
+        <div class="flex flex-col gap-2 flex-1">
+          <div class="h-3 bg-slate-200 rounded-full animate-pulse w-32"></div>
+          <div class="h-2.5 bg-slate-100 rounded-full animate-pulse w-16"></div>
+        </div>
+      </div>
+      <div class="p-3 flex flex-col gap-2">
+        <div class="h-9 bg-slate-100 rounded-xl animate-pulse"></div>
+        <div class="h-9 bg-slate-100 rounded-xl animate-pulse w-5/6"></div>
+        <div class="h-9 bg-slate-100 rounded-xl animate-pulse w-4/6"></div>
+        <div class="h-9 bg-slate-100 rounded-xl animate-pulse w-5/6"></div>
+      </div>
+    </div>
+    <div class="skeleton-card company-card hidden sm:flex flex-col" aria-hidden="true">
+      <div class="card-header">
+        <div class="w-11 h-11 rounded-xl bg-slate-200 animate-pulse flex-shrink-0"></div>
+        <div class="flex flex-col gap-2 flex-1">
+          <div class="h-3 bg-slate-200 rounded-full animate-pulse w-28"></div>
+          <div class="h-2.5 bg-slate-100 rounded-full animate-pulse w-12"></div>
+        </div>
+      </div>
+      <div class="p-3 flex flex-col gap-2">
+        <div class="h-9 bg-slate-100 rounded-xl animate-pulse"></div>
+        <div class="h-9 bg-slate-100 rounded-xl animate-pulse w-4/6"></div>
+        <div class="h-9 bg-slate-100 rounded-xl animate-pulse w-5/6"></div>
+      </div>
+    </div>
+    <div class="skeleton-card company-card hidden lg:flex flex-col" aria-hidden="true">
+      <div class="card-header">
+        <div class="w-11 h-11 rounded-xl bg-slate-200 animate-pulse flex-shrink-0"></div>
+        <div class="flex flex-col gap-2 flex-1">
+          <div class="h-3 bg-slate-200 rounded-full animate-pulse w-24"></div>
+          <div class="h-2.5 bg-slate-100 rounded-full animate-pulse w-14"></div>
+        </div>
+      </div>
+      <div class="p-3 flex flex-col gap-2">
+        <div class="h-9 bg-slate-100 rounded-xl animate-pulse"></div>
+        <div class="h-9 bg-slate-100 rounded-xl animate-pulse w-5/6"></div>
+        <div class="h-9 bg-slate-100 rounded-xl animate-pulse w-3/6"></div>
+        <div class="h-9 bg-slate-100 rounded-xl animate-pulse w-5/6"></div>
+        <div class="h-9 bg-slate-100 rounded-xl animate-pulse w-4/6"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ══ EMPTY STATE (injected by JS into grid) ════════════════════════════ -->
+  <div id="empty-state" class="empty-state" role="status" aria-live="polite">
+    <svg class="w-16 h-16 mb-4 opacity-25" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803 7.5 7.5 0 0016.803 15.803z"/>
+    </svg>
+    <p class="text-base font-semibold text-slate-500">No results found</p>
+    <p class="text-sm text-slate-400 mt-1">Try a different company name or link title</p>
+  </div>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════════════════════ -->
+  <footer class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-4">
+    <div class="border-t border-slate-200 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-slate-400">
+        Edit <code class="bg-slate-100 px-1.5 py-0.5 rounded text-slate-500 font-mono">data.js</code> to update your links
+      </p>
+      <p class="text-xs text-slate-400">Project Link &mdash; Internal Resource Hub</p>
+    </div>
+  </footer>
+
+  <!-- Data — must come before app.js. Edit data.js to update your links. -->
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
+

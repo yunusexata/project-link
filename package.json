@@ -1,0 +1,15 @@
+{
+  "name": "project-link",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static company resource hub - link list grouped by company",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "dev": "npx serve ."
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
+
